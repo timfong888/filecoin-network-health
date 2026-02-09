@@ -3,3 +3,4 @@ node_modules/
 .observablehq/
 docs/.observablehq/
 .DS_Store
+.vercel
