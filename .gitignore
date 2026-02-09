@@ -4,3 +4,4 @@ node_modules/
 docs/.observablehq/
 .DS_Store
 .vercel
+.github/workflows/
