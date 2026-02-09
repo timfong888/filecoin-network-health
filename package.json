@@ -1,0 +1,15 @@
+{
+  "name": "filecoin-network-health",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "observable preview",
+    "build": "observable build",
+    "deploy": "observable build && vercel --prod"
+  },
+  "dependencies": {
+    "@observablehq/framework": "^1.13.3",
+    "duckdb": "^1.2.2"
+  }
+}
