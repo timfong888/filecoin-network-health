@@ -5,3 +5,9 @@ docs/.observablehq/
 .DS_Store
 .vercel
 .github/workflows/
+
+# spec-kit (local-only spec-driven development)
+.claude/
+.specify/
+specs/
+scripts/
