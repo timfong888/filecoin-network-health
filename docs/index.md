@@ -143,6 +143,7 @@ Plot.plot({
   height: 500,
   y: {label: "Block Reward Per Win (USD)", grid: true, domain: [-yTop * 0.45, yTop]},
   x: {type: "utc", label: "Week"},
+  color: {legend: false},
   marks: [
     // Zero line separating trends from termination bars
     Plot.ruleY([0], {stroke: "var(--theme-foreground-muted)", strokeWidth: 1}),
@@ -151,9 +152,15 @@ Plot.plot({
       x: "week",
       interval: d3.utcMonday,
       y: d => -d.power_lost_pibs * termScale,
-      fill: d => d.provider === "Other" ? "#bbb" : d.provider,
-      title: d => `${new Date(d.week).toLocaleDateString()}\n${d.provider}: ${d.power_lost_pibs.toFixed(1)} PiB lost (${d.sp_count} SPs)`
+      fill: d => d.provider === "Other" ? "#bbb" : d.provider
     })),
+    // Hover tooltip for termination bars — shows SPID, power lost, and week
+    Plot.tip(spWeeklyTerminations, Plot.pointer(Plot.stackY({
+      x: "week",
+      interval: d3.utcMonday,
+      y: d => -d.power_lost_pibs * termScale,
+      title: d => `${new Date(d.week).toLocaleDateString()}\n${d.provider}: ${d.power_lost_pibs.toFixed(1)} PiB lost`
+    }))),
     // Total power trend line (scaled to left axis)
     Plot.lineY(merged, {x: "week", y: d => d.total_power * powerScale, stroke: "#999", strokeWidth: 2, strokeDasharray: "6,3"}),
     // Block reward line
